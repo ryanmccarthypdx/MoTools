@@ -1,0 +1,9 @@
+development:
+  adapter: postgresql
+  database: MoTools_development
+  template: template0
+
+test:
+  adapter: postgresql
+  database: MoTools_test
+  template: template0
