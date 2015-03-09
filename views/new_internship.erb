@@ -1,0 +1,82 @@
+<h1>Epicodus Internships</h1>
+
+<p>Thanks for your interest in mentoring interns from Epicodus. Please take a moment to fill out this form to get the process started!
+Here's the internship information page for your reference: <a href="https://www.epicodus.com/internships.html"></a>www.epicodus.com/internships.html</p>
+
+<p>Major dates to remember:</p>
+
+<p>Interviews will take place over a half day at Epicodus the week of March 23 to 27.</p>
+
+<p>Internships start April 20, 2015 and end May 22, 2015 (5 weeks total).</p>
+
+<p>Epicodus schedules a job fair for every class 2 weeks before internships end; expect interns to be out for part of the day on Friday, May 8.</p>
+
+<form action="internships" method="post">
+  <h3>Tell us a bit about your company</h3>
+  <div class="form-group">
+    <label for="company_name">Your company name</label>
+    <input type="text" id="company_name" name="company_name">
+
+    <label for="contact_name">Who is the primary contact at your company who will coordinate the internship?</label>
+    <input type="text" id="contact_name" name="contact_name">
+
+    <label for="contact_phone">What phone number can they be reached at?</label>
+    <input type="text" id="contact_phone" name="contact_phone">
+
+    <label for="contact_email">And their email?</label>
+    <input type="text" id="contact_email" name="contact_email">
+
+    <label for="company_website">Website</label>
+    <input type="text" id="company_website" name="company_website">
+
+    <label for="company_address">Physical Address</label>
+    <input type="text" id="company_address" name="company_address">
+
+    <label for="company_description">Provide a brief description of your company and what it does</label>
+    <textarea id="company_description" name="company_description" rows="5"></textarea>
+  </div>
+  <div class="form-group">
+    <h3>Internship Description</h3>
+    <p>This information will be provided directly to students so that they can select companies they are interested in interviewing with.</p>
+
+    <label for="intern_work">What will the interns be working on?</label>
+    <textarea id="intern_work" name="intern_work" rows="5"></textarea>
+
+    <label for="intern_ideal">Describe an ideal intern</label>
+    <textarea id="intern_ideal" name="intern_ideal" rows="5"></textarea>
+
+    <label for="intern_count">How many interns would you like to work with?</label>
+    <p>We have a minimum of two students per company, so that they can support each other at their internship.</p>
+    <div class="radio" style="margin-left: 20px">
+      <input type="radio" name="intern_count" value="2" checked><label>2</label>
+      <input type="radio" name="intern_count" value="3"><label>3</label>
+      <input type="radio" name="intern_count" value="4"><label>4</label>
+      <input type="radio" name="intern_count"><label>Other:</label>
+    </div>
+
+    <label for="intern_clearance">Is there any secondary application process or background check interns will need to undergo before starting?</label>
+    <div class="radio" style="margin-left: 20px">
+      <input type="radio" name="intern_clearance" value="true" checked><label>Yes</label>
+      <input type="radio" name="intern_clearance" value="false"><label>No</label>
+    </div>
+    <label for="intern_clearance_description">If so, please describe the process</label>
+    <textarea id="intern_clearance_description" name="intern_clearance_description" rows="5"></textarea>
+
+  </div>
+
+  <div class="form-group">
+    <h3>Who will be the primary mentor or technical sponsor for interns and point of contact for Epicodus during the internship? (If different than above)</h3>
+    <p>As a reminder, to participate in the internship you must have a more experienced developer on staff who can mentor students. And I will plan to check in at least twice during the internship to be a resource for the intern mentor.</p>
+    <p>If you prefer to identify a mentor once the intern match has been made please let me know.</p>
+
+    <label for="mentor_name">Name</label>
+    <input type="text" id="mentor_name" name="mentor_name">
+
+    <label for="mentor_email">Email</label>
+    <input type="text" id="mentor_email" name="mentor_email">
+
+    <label for="mentor_phone">Phone</label>
+    <input type="text" id="mentor_phone"name="mentor_phone">
+  </div>
+  <button class="btn btn-primary" action="submit">Submit</button>
+</form>
