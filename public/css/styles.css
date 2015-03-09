@@ -5,3 +5,7 @@ input {
 .main-navigation li {
   display: inline;
 }
+
+.internships-ul {
+  list-style: none;
+}
