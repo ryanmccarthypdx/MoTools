@@ -1,3 +1,7 @@
 input {
   max-width: 25%;
 }
+
+.main-navigation li {
+  display: inline;
+}

@@ -4,6 +4,11 @@ Bundler.require(:default)
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
 get '/' do
+  @internships = Internship.all()
+  erb :internships
+end
+
+get '/new_internship' do
   erb :new_internship
 end
 
@@ -13,7 +18,6 @@ get '/internships' do
 end
 
 post '/internships' do
-  
   internship = Internship.create({
     :company_name => params.fetch("company_name"),
     :contact_name => params.fetch("contact_name"),
@@ -31,12 +35,11 @@ post '/internships' do
     :mentor_email => params.fetch("mentor_email"),
     :mentor_phone => params.fetch("mentor_phone")
   })
-  @internship_id = internship.id()
-  redirect "/internships/#{@internship_id}"
+  internship_id = internship.id()
+  redirect "/internships/#{internship_id}"
 end
 
 get '/internships/:internship_id' do
-  internship_id = params.fetch('internship_id')
-  @internship = Internship.find(internship_id)
+  @internship = Internship.find(params.fetch('internship_id'))
   erb :internship
 end
