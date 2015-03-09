@@ -13,6 +13,7 @@ get '/internships' do
 end
 
 post '/internships' do
+  
   internship = Internship.create({
     :company_name => params.fetch("company_name"),
     :contact_name => params.fetch("contact_name"),
