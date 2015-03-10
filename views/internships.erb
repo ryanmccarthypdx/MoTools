@@ -1,5 +1,11 @@
-<h2>Current Internship Opportunities</h2>
+<h2>Unrated Internships</h2>
+<ul class="internships-ul">
+  <% @unrated_internships.each do |internship| %>
+    <li><a href="/internships/<%= internship.id %>"><%= internship.company_name %></a></li>
+  <% end %>
+</ul>
 
+<h2>Rated Internships</h2>
 <ul class="internships-ul">
   <% @rated_internships.each do |internship| %>
   <% rating = Rating.find_by(internship_id: internship.id) %>

@@ -13,6 +13,7 @@ get '/internships' do
   Rating.all().each do |rating|
     @rated_internships.push(Internship.find_by(id: rating.internship_id))
   end
+  @unrated_internships = @internships - @rated_internships
   erb :internships
 end
 
