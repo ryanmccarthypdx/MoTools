@@ -11,5 +11,12 @@ RSpec.configure do |config|
       internship.destroy()
     end
 
+    Student.all().each() do |student|
+      student.destroy()
+    end
+
+    Rating.all().each() do |rating|
+      rating.destroy()
+    end
   end
 end
