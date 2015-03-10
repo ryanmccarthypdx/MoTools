@@ -1,1 +1,26 @@
-<h2><%= @internship.company_name %></h2>
+<h1>Admin view:</h1>
+<h2>Internship Opportunity at <%= @internship.company_name %></h2>
+<table>
+  <tr>
+    <th>Company Info:</th>
+    <td><%= @internship.company_website %><br><%= @internship.company_address %><br><%= @internship.company_description %></td>
+  </tr>
+  <tr>
+    <th>Contact:</th><td><%= @internship.contact_name %><br><%= @internship.contact_phone %><br><%= @internship.contact_email %></td>
+  </tr>
+
+
+</table>
+
+
+:company_website => params.fetch("company_website"),
+:company_address => params.fetch("company_address"),
+:company_description => params.fetch("company_description"),
+:intern_work => params.fetch("intern_work"),
+:intern_ideal => params.fetch("intern_ideal"),
+:intern_count => params.fetch("intern_count"),
+:intern_clearance => params.fetch("intern_clearance"),
+:intern_clearance_description => params.fetch("intern_clearance_description"),
+:mentor_name => params.fetch("mentor_name"),
+:mentor_email => params.fetch("mentor_email"),
+:mentor_phone => params.fetch("mentor_phone")
