@@ -9,3 +9,7 @@ input {
 .internships-ul {
   list-style: none;
 }
+
+.table th {
+  text-align: right;
+}
