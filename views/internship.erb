@@ -3,24 +3,25 @@
 <table>
   <tr>
     <th>Company Info:</th>
-    <td><%= @internship.company_website %><br><%= @internship.company_address %><br><%= @internship.company_description %></td>
+    <td><%= @internship.company_website %><br><%= @internship.company_address %><br><br><%= @internship.company_description %></td>
   </tr>
   <tr>
-    <th>Contact:</th><td><%= @internship.contact_name %><br><%= @internship.contact_phone %><br><%= @internship.contact_email %></td>
+    <th>Contact:</th>
+    <td><%= @internship.contact_name %><br><%= @internship.contact_phone %><br><%= @internship.contact_email %></td>
   </tr>
-
-
+  <tr>
+    <th>Internship Descripton:</th><td><%= @internship.intern_work %></td>
+  </tr>
+  <tr>
+    <th>Ideal Intern:</th><td><%= @internship.intern_ideal %></td>
+  </tr>
+  <% if @internship.intern_clearance == true %>
+    <tr>
+      <th><strong>Clearance Required:</strong></th><td><%= @internship.intern_clearance_description %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <th>Intern Mentor:</th>
+    <td><%= @internship.mentor_name %><br><%= @internship.mentor_email %><br><%= @internship.mentor_phone %><br></td>
+  </tr>
 </table>
-
-
-:company_website => params.fetch("company_website"),
-:company_address => params.fetch("company_address"),
-:company_description => params.fetch("company_description"),
-:intern_work => params.fetch("intern_work"),
-:intern_ideal => params.fetch("intern_ideal"),
-:intern_count => params.fetch("intern_count"),
-:intern_clearance => params.fetch("intern_clearance"),
-:intern_clearance_description => params.fetch("intern_clearance_description"),
-:mentor_name => params.fetch("mentor_name"),
-:mentor_email => params.fetch("mentor_email"),
-:mentor_phone => params.fetch("mentor_phone")
