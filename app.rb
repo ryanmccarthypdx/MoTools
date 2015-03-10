@@ -4,17 +4,20 @@ Bundler.require(:default)
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
 get '/' do
-  @internships = Internship.all()
-  erb :internships
-end
-
-get '/new_internship' do
-  erb :new_internship
+  redirect '/internships'
 end
 
 get '/internships' do
   @internships = Internship.all()
+  @rated_internships = []
+  Rating.all().each do |rating|
+    @rated_internships.push(Internship.find_by(id: rating.internship_id))
+  end
   erb :internships
+end
+
+get '/internships/new' do
+  erb :new_internship
 end
 
 post '/internships' do
@@ -42,4 +45,16 @@ end
 get '/internships/:internship_id' do
   @internship = Internship.find(params.fetch('internship_id'))
   erb :internship
+end
+
+post '/internships/:internship_id/ratings' do
+  @internship = Internship.find(params.fetch('internship_id'))
+  Rating.create({
+    :student_id => params.fetch('student_id'),
+    :internship_id => params.fetch('internship_id'),
+    :company_rating => params.fetch("company_rating"),
+    :project_rating => params.fetch("project_rating"),
+    :personality_rating => params.fetch("personality_rating")
+    })
+  redirect "/internships"
 end
