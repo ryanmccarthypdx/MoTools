@@ -1,0 +1,7 @@
+In Rails app:
+
+app
+  models
+    Internship, Interview, and Assignment classes
+  views
+    our internship erb files
