@@ -7,3 +7,8 @@ test:
   adapter: postgresql
   database: MoTools_test
   template: template0
+
+production:
+  adapter: postgresql
+  database: MoTools_production
+  template: template0
