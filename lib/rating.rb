@@ -11,5 +11,4 @@ class Rating < ActiveRecord::Base
       {value: 3, label: "Sounds HYPERAWESOME!!!1"},
       ]
   end
-
 end

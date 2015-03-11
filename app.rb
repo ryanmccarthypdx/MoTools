@@ -46,6 +46,8 @@ get '/internships/:internship_id' do
 
   if @internship.rating
     @route = "/internships/#{@internship.id}/edit_rating"
+    @active_company_rating_value = @internship.rating.company_rating
+
     @editing = true
     erb :edit_rating
   else
@@ -62,6 +64,17 @@ post '/internships/:internship_id/new_rating' do
     :student_id => params.fetch('student_id'),
 
     :internship_id => params.fetch('internship_id'),
+    :company_rating => params.fetch("company_rating"),
+    :project_rating => params.fetch("project_rating"),
+    :personality_rating => params.fetch("personality_rating")
+    })
+  redirect "/internships"
+end
+
+post '/internships/:internship_id/edit_rating' do
+  @internship = Internship.find(params.fetch('internship_id'))
+
+  @internship.rating.update({
     :company_rating => params.fetch("company_rating"),
     :project_rating => params.fetch("project_rating"),
     :personality_rating => params.fetch("personality_rating")

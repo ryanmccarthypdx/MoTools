@@ -13,7 +13,11 @@
       <td>
         <select name="company_rating" required>
           <% @responses.each() do |response| %>
-            <option value="<%= response[:value] %>"><%= response[:label] %></option>
+            <% if response[:value] == @internship.rating.company_rating %>
+              <option value="<%= response[:value] %>" selected><%= response[:label] %></option>
+            <% else %>
+              <option value="<%= response[:value] %>"><%= response[:label] %></option>
+            <% end %>
           <% end %>
         </select>
       </td>
@@ -23,7 +27,11 @@
       <td>
         <select name="project_rating" required>
           <% @responses.each() do |response| %>
-            <option value="<%= response[:value] %>"><%= response[:label] %></option>
+            <% if response[:value] == @internship.rating.project_rating %>
+              <option value="<%= response[:value] %>" selected><%= response[:label] %></option>
+            <% else %>
+              <option value="<%= response[:value] %>"><%= response[:label] %></option>
+            <% end %>
           <% end %>
         </select>
       </td>
@@ -33,7 +41,11 @@
       <td>
         <select name="personality_rating" required>
           <% @responses.each() do |response| %>
-            <option value="<%= response[:value] %>"><%= response[:label] %></option>
+            <% if response[:value] == @internship.rating.personality_rating %>
+              <option value="<%= response[:value] %>" selected><%= response[:label] %></option>
+            <% else %>
+              <option value="<%= response[:value] %>"><%= response[:label] %></option>
+            <% end %>
           <% end %>
         </select>
       </td>
