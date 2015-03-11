@@ -28,20 +28,48 @@
 
 <h1>User view:</h1>
 <h2>Internship Opportunity at <%= @internship.company_name %></h2>
-<table class="table">
-  <tr>
-    <th>Company Info:</th>
-    <td><%= @internship.company_website %><br><%= @internship.company_address %><br><br><%= @internship.company_description %></td>
-  </tr>
-  <tr>
-    <th>Internship Descripton:</th><td><%= @internship.intern_work %></td>
-  </tr>
-  <tr>
-    <th>Ideal Intern:</th><td><%= @internship.intern_ideal %></td>
-  </tr>
-  <% if @internship.intern_clearance == true %>
+<form method="post" action="/internships/<%= @internship.id %>/ratings">
+
+  <!-- Remove hidden field of student id when login implemented -->
+  <input type="hidden" name="student_id" id="student_id" value="1">
+  
+  <table class="table">
     <tr>
-      <th><strong>Clearance Required:</strong></th><td><%= @internship.intern_clearance_description %></td>
+      <th>Company Info:</th>
+      <td><%= @internship.company_website %><br><%= @internship.company_address %><br><br><%= @internship.company_description %></td>
+      <td>
+        <select name="company_rating">
+          <option value="-1">Blurgh!!</option>
+          <option value="0">Meh</option>
+          <option value="1">Awesome to the MAXXX</option>
+        </select>
+      </td>
     </tr>
-  <% end %>
-</table>
+    <tr>
+      <th>Internship Descripton:</th><td><%= @internship.intern_work %></td>
+      <td>
+        <select name="project_rating">
+          <option value="-1">Blurgh!!</option>
+          <option value="0">Meh</option>
+          <option value="1">Awesome to the MAXXX</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>Ideal Intern:</th><td><%= @internship.intern_ideal %></td>
+      <td>
+        <select name="personality_rating">
+          <option value="-1">Blurgh!!</option>
+          <option value="0">Meh</option>
+          <option value="1">Awesome to the MAXXX</option>
+        </select>
+      </td>
+    </tr>
+    <% if @internship.intern_clearance == true %>
+      <tr>
+        <th><strong>Clearance Required:</strong></th><td><%= @internship.intern_clearance_description %></td>
+      </tr>
+    <% end %>
+  </table>
+  <button action="submit" class="btn btn-success">Submit my views!</button>
+</form>

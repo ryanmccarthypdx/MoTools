@@ -10,6 +10,14 @@ input {
   list-style: none;
 }
 
-.table th {
-  text-align: right;
+.table-header th {
+  text-align: center;
+  font-size: 18px;
+}
+
+.table-row td {
+  text-align: center;
+}
+.table-row th {
+  text-align: center;
 }
