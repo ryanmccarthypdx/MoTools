@@ -21,3 +21,8 @@ input {
 .table-row th {
   text-align: center;
 }
+
+.table-rating th {
+  text-align: right;
+  width: 20%;
+}

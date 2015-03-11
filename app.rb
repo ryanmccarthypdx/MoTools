@@ -40,17 +40,27 @@ post '/internships' do
 end
 
 get '/internships/:internship_id' do
+  @responses = Rating.possible_ratings
   @internship = Internship.find(params.fetch('internship_id'))
-  erb :internship
+  @editing = false
+
+  if @internship.rating
+    @route = "/internships/#{@internship.id}/edit_rating"
+    @editing = true
+    erb :edit_rating
+  else
+    @route = "/internships/#{@internship.id}/new_rating"
+    erb :new_rating
+  end
 end
 
-post '/internships/:internship_id/ratings' do
+post '/internships/:internship_id/new_rating' do
   @internship = Internship.find(params.fetch('internship_id'))
   Rating.create({
 
     # student_id will be implicit from login somwhow
     :student_id => params.fetch('student_id'),
-    
+
     :internship_id => params.fetch('internship_id'),
     :company_rating => params.fetch("company_rating"),
     :project_rating => params.fetch("project_rating"),

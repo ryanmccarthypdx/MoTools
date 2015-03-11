@@ -22,10 +22,10 @@ class Internship < ActiveRecord::Base
     total_rating = rating.company_rating + rating.project_rating + rating.personality_rating
   end
 
+  def rating
+    Rating.find_by(internship_id: self.id, student_id: 1)
+  end
 
   private
 
-    def rating
-      Rating.find_by(internship_id: self.id, student_id: 1)
-    end
 end

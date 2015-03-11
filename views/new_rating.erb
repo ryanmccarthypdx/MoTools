@@ -1,0 +1,48 @@
+<h1>User view:</h1>
+<h2>Internship Opportunity at <%= @internship.company_name %></h2>
+<form method="post" action=<%= @route %>>
+  <h4><%= @route %></h4>
+
+  <!-- Remove hidden field of student id when login implemented -->
+  <input type="hidden" name="student_id" id="student_id" value="1">
+
+  <table class="table table-rating">
+    <tr>
+      <th>Company Info:</th>
+      <td><%= @internship.company_website %><br><%= @internship.company_address %><br><br><%= @internship.company_description %></td>
+      <td>
+        <select name="company_rating" required>
+          <% @responses.each() do |response| %>
+            <option value="<%= response[:value] %>"><%= response[:label] %></option>
+          <% end %>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>Internship Descripton:</th><td><%= @internship.intern_work %></td>
+      <td>
+        <select name="project_rating" required>
+          <% @responses.each() do |response| %>
+            <option value="<%= response[:value] %>"><%= response[:label] %></option>
+          <% end %>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>Ideal Intern:</th><td><%= @internship.intern_ideal %></td>
+      <td>
+        <select name="personality_rating" required>
+          <% @responses.each() do |response| %>
+            <option value="<%= response[:value] %>"><%= response[:label] %></option>
+          <% end %>
+        </select>
+      </td>
+    </tr>
+    <% if @internship.intern_clearance == true %>
+      <tr>
+        <th><strong>Clearance Required:</strong></th><td><%= @internship.intern_clearance_description %></td>
+      </tr>
+    <% end %>
+  </table>
+  <button action="submit" class="btn btn-success"><%= @editing ? "Revise my views" : "Submit my views!" %></button>
+</form>
