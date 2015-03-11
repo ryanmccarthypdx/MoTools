@@ -18,6 +18,7 @@ input {
 .table-row td {
   text-align: center;
 }
+
 .table-row th {
   text-align: center;
 }
@@ -25,4 +26,28 @@ input {
 .table-rating th {
   text-align: right;
   width: 20%;
+}
+
+.table-internships th {
+  width: 20%;
+}
+
+.color-10 {
+  background-color: red;
+}
+
+.color-1 {
+  background-color: orange;
+}
+
+.color0 {
+  background-color: yellow;
+}
+
+.color1 {
+  background-color: mediumseagreen;
+}
+
+.color3 {
+  background-color: lawngreen;
 }
