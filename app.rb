@@ -39,6 +39,14 @@ post '/internships' do
   redirect "/internships"
 end
 
+get '/register' do
+  erb :register
+end
+
+get '/login' do
+  erb :login
+end
+
 get '/internships/:internship_id' do
   @responses = Rating.possible_ratings
   @internship = Internship.find(params.fetch('internship_id'))
