@@ -1,8 +1,6 @@
 <h1>User view:</h1>
 <h2>Internship Opportunity at <%= @internship.company_name %></h2>
 <form method="post" action=<%= @route %>>
-  <!-- Remove hidden field of student id when login implemented -->
-  <input type="hidden" name="student_id" id="student_id" value="1">
 
   <table class="table table-rating">
     <tr>
@@ -11,7 +9,7 @@
       <td>
         <select name="company_rating" required>
           <% @responses.each() do |response| %>
-            <% if response[:value] == @internship.rating.company_rating %>
+            <% if response[:value] == @rating.company_rating %>
               <option value="<%= response[:value] %>" selected><%= response[:label] %></option>
             <% else %>
               <option value="<%= response[:value] %>"><%= response[:label] %></option>
@@ -25,7 +23,7 @@
       <td>
         <select name="project_rating" required>
           <% @responses.each() do |response| %>
-            <% if response[:value] == @internship.rating.project_rating %>
+            <% if response[:value] == @rating.project_rating %>
               <option value="<%= response[:value] %>" selected><%= response[:label] %></option>
             <% else %>
               <option value="<%= response[:value] %>"><%= response[:label] %></option>
@@ -39,7 +37,7 @@
       <td>
         <select name="personality_rating" required>
           <% @responses.each() do |response| %>
-            <% if response[:value] == @internship.rating.personality_rating %>
+            <% if response[:value] == @rating.personality_rating %>
               <option value="<%= response[:value] %>" selected><%= response[:label] %></option>
             <% else %>
               <option value="<%= response[:value] %>"><%= response[:label] %></option>

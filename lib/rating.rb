@@ -11,4 +11,13 @@ class Rating < ActiveRecord::Base
       {value: 3, label: "Sounds HYPERAWESOME!!!1"},
       ]
   end
+
+  # def self.sort_by_rating (rated_internships)
+  #   rated_internships.sort_by {|internship| internship.total_rating}.reverse
+  # end
+
+  def total_rating
+    company_rating + project_rating + personality_rating
+  end
+
 end
