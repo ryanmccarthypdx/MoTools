@@ -16,6 +16,15 @@ helpers do
   def admin?
     @current_user.role == admin
   end
+
+  def require_user
+    flash[:danger] = "Please Login"
+    redirect '/login' unless logged_in?
+  end
+
+  def current_rating
+    @rating = Rating.find_by(internship_id: @internship.id, student_id: current_user.id) if logged_in?
+  end
 end
 
 get '/' do
@@ -92,7 +101,7 @@ get '/internships/:internship_id' do
   @internship = Internship.find(params.fetch('internship_id'))
   @editing = false
 
-  if @internship.rating
+  if current_rating
     @route = "/internships/#{@internship.id}/edit_rating"
     @active_company_rating_value = @internship.rating.company_rating
 
@@ -105,11 +114,12 @@ get '/internships/:internship_id' do
 end
 
 post '/internships/:internship_id/new_rating' do
-  @internship = Internship.find(params.fetch('internship_id'))
+  require_user
+  internship = Internship.find(params.fetch('internship_id'))
   Rating.create({
 
     # student_id will be implicit from login somwhow
-    :student_id => params.fetch('student_id'),
+    :student_id => current_user.id,
 
     :internship_id => params.fetch('internship_id'),
     :company_rating => params.fetch("company_rating"),
@@ -120,9 +130,10 @@ post '/internships/:internship_id/new_rating' do
 end
 
 post '/internships/:internship_id/edit_rating' do
-  @internship = Internship.find(params.fetch('internship_id'))
-
-  @internship.rating.update({
+  require_user
+  internship = Internship.find(params.fetch('internship_id'))
+  current_rating
+  @rating.update({
     :company_rating => params.fetch("company_rating"),
     :project_rating => params.fetch("project_rating"),
     :personality_rating => params.fetch("personality_rating")

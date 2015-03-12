@@ -23,7 +23,7 @@ class Internship < ActiveRecord::Base
   end
 
   def rating
-    Rating.find_by(internship_id: self.id, student_id: 1)
+    Rating.find_by(internship_id: self.id, student_id: current_user.id)
   end
 
   private
