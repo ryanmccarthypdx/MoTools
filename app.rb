@@ -1,4 +1,6 @@
 require('bundler/setup')
+require('csv')
+require('open-uri')
 Bundler.require(:default)
 
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
@@ -46,8 +48,6 @@ get '/internships/:internship_id' do
 
   if @internship.rating
     @route = "/internships/#{@internship.id}/edit_rating"
-    @active_company_rating_value = @internship.rating.company_rating
-
     @editing = true
     erb :edit_rating
   else
@@ -80,4 +80,13 @@ post '/internships/:internship_id/edit_rating' do
     :personality_rating => params.fetch("personality_rating")
     })
   redirect "/internships"
+end
+
+get "/import_csv" do
+  erb :import_csv
+end
+
+post "/import_csv" do
+  Internship.import_csv(params.fetch("csv_file_input"))
+  redirect"/internships"
 end
