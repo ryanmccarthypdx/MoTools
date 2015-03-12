@@ -27,13 +27,17 @@ class Internship < ActiveRecord::Base
   end
 
   def self.import_csv (csv_route)
+    rows = []
     CSV.foreach(csv_route) do |row|
+      rows.push(row)
+    end
+    rows.shift()
+    rows.each() do |row|
       if (row[6] == "Yes")
         intern_value = "true"
       else
         intern_value = "false"
       end
-
       Internship.create({
         company_name: row[1],
         contact_name: row[3],
@@ -55,5 +59,6 @@ class Internship < ActiveRecord::Base
   end
 
   private
+
 
 end
