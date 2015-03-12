@@ -1,5 +1,6 @@
 require('bundler/setup')
 require('csv')
+require('open-uri')
 Bundler.require(:default)
 
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
@@ -79,4 +80,13 @@ post '/internships/:internship_id/edit_rating' do
     :personality_rating => params.fetch("personality_rating")
     })
   redirect "/internships"
+end
+
+get "/import_csv" do
+  erb :import_csv
+end
+
+post "/import_csv" do
+  Internship.import_csv(params.fetch("csv_file_input"))
+  redirect"/internships"
 end

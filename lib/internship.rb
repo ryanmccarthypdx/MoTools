@@ -26,11 +26,18 @@ class Internship < ActiveRecord::Base
     Rating.find_by(internship_id: self.id, student_id: 1)
   end
 
-  def self.import_csv (csv_route)
+  def self.import_csv (csv_file_input)
     rows = []
-    CSV.foreach(csv_route) do |row|
+
+    File.open('csv_uploads/' + csv_file_input[:filename], "w") do |f|
+      f.write(csv_file_input[:tempfile].read)
+    end
+
+
+    CSV.foreach("csv_uploads/" + csv_file_input[:filename]) do |row|
       rows.push(row)
     end
+
     if (rows.first[0] == "Timestamp") && (rows.first[1] == "Your company name")
       rows.shift()
     end
