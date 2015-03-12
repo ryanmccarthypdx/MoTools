@@ -87,6 +87,7 @@ get "/import_csv" do
 end
 
 post "/import_csv" do
-  Internship.import_csv(params.fetch("csv_file_input"))
+  data = params.fetch("csv_file_input")[:tempfile]
+  Internship.import_csv(data)
   redirect"/internships"
 end
