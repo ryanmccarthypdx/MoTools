@@ -31,7 +31,10 @@ class Internship < ActiveRecord::Base
     CSV.foreach(csv_route) do |row|
       rows.push(row)
     end
-    rows.shift()
+    if (rows.first[0] == "Timestamp") && (rows.first[1] == "Your company name")
+      rows.shift()
+    end
+
     rows.each() do |row|
       if (row[6] == "Yes")
         intern_value = "true"
