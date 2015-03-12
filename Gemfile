@@ -10,6 +10,7 @@ gem('rake')
 gem 'cowsay'
 gem 'rack'
 gem 'sdoc', '~> 0.4.0',          group: :doc
+gem 'shotgun'
 
 gem 'spring',        group: :development
 
