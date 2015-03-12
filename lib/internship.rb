@@ -26,6 +26,14 @@ class Internship < ActiveRecord::Base
     Rating.find_by(internship_id: self.id, student_id: 1)
   end
 
+  def self.import_csv (csv_route)
+    output = []
+    CSV.foreach(csv_route) do |row|
+      output.push(row)
+    end
+    output
+  end
+
   private
 
 end

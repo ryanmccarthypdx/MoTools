@@ -1,4 +1,5 @@
 ENV['RACK_ENV'] = 'test'
+require('csv')
 
 require('bundler/setup')
 Bundler.require(:default, :test)

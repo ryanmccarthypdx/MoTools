@@ -1,4 +1,5 @@
 require('bundler/setup')
+require('csv')
 Bundler.require(:default)
 
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
@@ -46,8 +47,6 @@ get '/internships/:internship_id' do
 
   if @internship.rating
     @route = "/internships/#{@internship.id}/edit_rating"
-    @active_company_rating_value = @internship.rating.company_rating
-
     @editing = true
     erb :edit_rating
   else
