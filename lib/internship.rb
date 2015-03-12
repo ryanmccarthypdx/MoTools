@@ -29,12 +29,7 @@ class Internship < ActiveRecord::Base
   def self.import_csv (csv_file_input)
     rows = []
 
-    File.open('csv_uploads/' + csv_file_input[:filename], "w") do |f|
-      f.write(csv_file_input[:tempfile].read)
-    end
-
-
-    CSV.foreach("csv_uploads/" + csv_file_input[:filename]) do |row|
+    CSV.foreach(csv_file_input[:tempfile]) do |row|
       rows.push(row)
     end
 
