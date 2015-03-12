@@ -2,6 +2,22 @@ require('bundler/setup')
 Bundler.require(:default)
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
+enable :sessions
+
+helpers do
+  def logged_in?
+    session[:username]
+  end
+
+  def current_user
+    @current_user = User.find_by(name: session[:username]) if logged_in?
+  end
+
+  def admin?
+    @current_user.role == admin
+  end
+end
+
 get '/' do
   redirect '/internships'
 end
@@ -42,8 +58,33 @@ get '/register' do
   erb :register
 end
 
+post '/register' do
+  user = User.new(name: params[:username], password: params[:password], password_confirmation: params[:password_confirmation])
+  if user.save
+    session[:username] = user.name
+    redirect '/internships'
+  else
+    redirect '/register'
+  end
+end
+
 get '/login' do
   erb :login
+end
+
+post '/login' do
+  user = User.authenticate(params[:username], params[:password])
+  if user
+    session[:username] = user.name
+    redirect '/internships'
+  else
+    redirect '/login'
+  end
+end
+
+get '/logout' do
+  session[:username] = nil
+  redirect '/'
 end
 
 get '/internships/:internship_id' do

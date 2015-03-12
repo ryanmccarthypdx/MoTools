@@ -1,2 +1,5 @@
-
-<%= erb :user_internships, layout: false %>
+<% if logged_in? %>
+  <%= erb :user_internships, layout: false %>
+<% else %>
+  <%= erb :unrated_internships, layout: false %>
+<% end %>
