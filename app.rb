@@ -70,10 +70,16 @@ post '/internships' do
 end
 
 get '/register' do
+  if logged_in?
+    redirect '/'
+  end
   erb :register
 end
 
 post '/register' do
+  if logged_in?
+    redirect '/'
+  end
   user = User.new(name: params[:username], password: params[:password], password_confirmation: params[:password_confirmation])
   user.role = "student"
   if user.save
