@@ -19,6 +19,17 @@ describe Internship do
       expect(all_internships[7].intern_clearance).to(eql(true))
       expect(all_internships[6].intern_clearance).to(eql(false))
     end
+    it("won't import already exisiting internships") do
+      Internship.import_csv("spec/sample_data_for_parser/second_row_only.csv")
+      Internship.import_csv("spec/sample_data_for_parser/two_row.csv")
+      expect(Internship.all().length).to(eql(1))
+    end
+    it("will import not already existing internships") do
+      Internship.import_csv("spec/sample_data_for_parser/second_row_only.csv")
+      Internship.import_csv("spec/sample_data_for_parser/Sample_CSV.csv")
+      expect(Internship.all().length).to(eql(12))
+    end
+
   end
 
 end
