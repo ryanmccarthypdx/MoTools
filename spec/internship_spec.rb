@@ -13,6 +13,12 @@ describe Internship do
       Internship.import_csv("spec/sample_data_for_parser/second_row_only.csv")
       expect(Internship.all().first.company_name).to(eql("Thetus Corporation"))
     end
+    it("formats true/false values when additional clearance is required") do
+      Internship.import_csv("spec/sample_data_for_parser/Sample_CSV.csv")
+      all_internships = Internship.all()
+      expect(all_internships[7].intern_clearance).to(eql(true))
+      expect(all_internships[6].intern_clearance).to(eql(false))
+    end
   end
 
 end
