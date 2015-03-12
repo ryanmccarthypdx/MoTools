@@ -10,21 +10,25 @@ helpers do
   end
 
   def current_user
-    @current_user = User.find_by(name: session[:username]) if logged_in?
+    if logged_in? && admin?
+      @current_user = User.find_by(name: session[:username])
+    else
+      @current_user = Student.find_by(name: session[:username])
+    end
   end
 
   def admin?
-    @current_user.role == admin
+    User.find_by(name: session[:username]).role == "admin" if logged_in?
   end
 
   def require_user
-    flash[:danger] = "Please Login"
     redirect '/login' unless logged_in?
   end
 
   def current_rating
     @rating = Rating.find_by(internship_id: @internship.id, student_id: current_user.id) if logged_in?
   end
+
 end
 
 get '/' do
@@ -32,8 +36,12 @@ get '/' do
 end
 
 get '/internships' do
-  @rated_internships = Internship.rated
-  @unrated_internships = Internship.unrated
+  if logged_in?
+    @rated_internships = current_user.sorted_internships
+    @unrated_internships = Internship.all - @rated_internships
+  else
+    @unrated_internships = Internship.all
+  end
   erb :internships
 end
 
@@ -69,6 +77,7 @@ end
 
 post '/register' do
   user = User.new(name: params[:username], password: params[:password], password_confirmation: params[:password_confirmation])
+  user.role = "student"
   if user.save
     session[:username] = user.name
     redirect '/internships'
@@ -120,7 +129,6 @@ post '/internships/:internship_id/new_rating' do
 
     # student_id will be implicit from login somwhow
     :student_id => current_user.id,
-
     :internship_id => params.fetch('internship_id'),
     :company_rating => params.fetch("company_rating"),
     :project_rating => params.fetch("project_rating"),
