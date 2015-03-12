@@ -24,11 +24,6 @@ helpers do
   def require_user
     redirect '/login' unless logged_in?
   end
-
-  def current_rating
-    @rating = Rating.find_by(internship_id: @internship.id, student_id: current_user.id) if logged_in?
-  end
-
 end
 
 get '/' do
@@ -36,7 +31,10 @@ get '/' do
 end
 
 get '/internships' do
-  if logged_in?
+
+  if logged_in? && admin?
+    @unrated_internships = Internship.all
+  elsif logged_in?
     @rated_internships = current_user.sorted_internships
     @unrated_internships = Internship.all - @rated_internships
   else
@@ -126,8 +124,6 @@ post '/internships/:internship_id/new_rating' do
   require_user
   internship = Internship.find(params.fetch('internship_id'))
   Rating.create({
-
-    # student_id will be implicit from login somwhow
     :student_id => current_user.id,
     :internship_id => params.fetch('internship_id'),
     :company_rating => params.fetch("company_rating"),
@@ -139,8 +135,8 @@ end
 
 post '/internships/:internship_id/edit_rating' do
   require_user
-  internship = Internship.find(params.fetch('internship_id'))
-  current_rating
+  @internship = Internship.find(params.fetch('internship_id'))
+  @rating = Rating.find_by(internship_id: @internship.id, student_id: current_user.id)
   @rating.update({
     :company_rating => params.fetch("company_rating"),
     :project_rating => params.fetch("project_rating"),

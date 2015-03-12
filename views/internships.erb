@@ -1,4 +1,6 @@
-<% if logged_in? %>
+<% if logged_in? && admin? %>
+  <%= erb :unrated_internships, layout: false %>
+<% elsif logged_in? %>
   <%= erb :user_internships, layout: false %>
 <% else %>
   <%= erb :unrated_internships, layout: false %>

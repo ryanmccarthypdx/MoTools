@@ -10,7 +10,7 @@
 
   <% @rated_internships.each do |internship| %>
     <tr class="table-row">
-      <% rating = Rating.find_by(internship_id: internship.id) %>
+      <% rating = Rating.find_by(internship_id: internship.id, student_id: current_user.id) %>
         <th><a href="/internships/<%= internship.id %>"><%= internship.company_name %></a></th>
         <td><%= rating.company_rating %></td>
         <td><%= rating.project_rating %></td>
