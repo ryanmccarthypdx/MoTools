@@ -11,7 +11,7 @@ gem 'cowsay'
 gem 'rack'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'shotgun'
-gem 'bcrypt-ruby', require: 'bcrypt'
+gem 'bcrypt', require: 'bcrypt'
 
 gem 'spring',        group: :development
 
