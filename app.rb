@@ -166,3 +166,15 @@ post "/import_csv" do
   Internship.import_csv(data)
   redirect"/internships"
 end
+
+get "/download_csv" do
+  redirect '/' unless admin?
+  Student.internship_data_export()
+  filename = "output.csv"
+  redirect "/download/#{filename}"
+end
+
+get '/download/:filename' do |filename|
+  redirect '/' unless admin?
+  send_file "./public/#{filename}", :filename => filename, :type => 'Application/octet-stream'
+end
