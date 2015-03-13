@@ -1,0 +1,20 @@
+<h3>Register</h3>
+<p>Please use your real name, lowercase, without spaces.</p>
+<p>Passwords are encrypted with <a href="https://github.com/codahale/bcrypt-ruby">bcrypt</a>.</p>
+<div class="login-form">
+  <form id="login" action="/register" method="post">
+    <div class="form-group col-xs-5">
+      <label for="username">Username</label>
+      <input type="text" name="username">
+    </div>
+    <div class="form-group col-xs-5">
+      <label for="password">Password</label>
+      <input type="password" name="password">
+    </div>
+    <div class="form-group col-xs-5">
+      <label for="password_confirmation">Reenter Password</label>
+      <input type="password" name="password_confirmation">
+    </div>
+    <button class="col-xs-2" name="submit">Login</button>
+  </form>
+</div>

@@ -1,0 +1,5 @@
+<ul class="internships-ul">
+  <% @unrated_internships.each do |internship| %>
+    <li><a href="/internships/<%= internship.id %>"><%= internship.company_name %></a></li>
+  <% end %>
+</ul>

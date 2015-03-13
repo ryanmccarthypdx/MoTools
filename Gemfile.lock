@@ -16,6 +16,7 @@ GEM
       tzinfo (~> 1.1)
     arel (6.0.0)
     backports (3.6.4)
+    bcrypt (3.1.10)
     builder (3.2.2)
     coderay (1.1.0)
     cowsay (0.2.0)
@@ -53,6 +54,8 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    shotgun (0.9.1)
+      rack (>= 1.0)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
     sinatra (1.4.5)
@@ -80,6 +83,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt
   cowsay
   pg
   pry
@@ -87,6 +91,7 @@ DEPENDENCIES
   rake
   rspec
   sdoc (~> 0.4.0)
+  shotgun
   shoulda-matchers
   sinatra
   sinatra-activerecord

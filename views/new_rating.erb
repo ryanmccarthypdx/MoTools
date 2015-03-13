@@ -1,75 +1,80 @@
-<h1>Admin view:</h1>
-<h2>Internship Opportunity at <%= @internship.company_name %></h2>
-<table class="table table-rating">
-  <tr>
-    <th>Company Info:</th>
-    <td><%= @internship.company_website %><br><%= @internship.company_address %><br><br><%= @internship.company_description %></td>
-  </tr>
-  <tr>
-    <th>Contact:</th>
-    <td><%= @internship.contact_name %><br><%= @internship.contact_phone %><br><%= @internship.contact_email %></td>
-  </tr>
-  <tr>
-    <th>Internship Descripton:</th><td><%= @internship.intern_work %></td>
-  </tr>
-  <tr>
-    <th>Ideal Intern:</th><td><%= @internship.intern_ideal %></td>
-  </tr>
-  <% if @internship.intern_clearance == true %>
-    <tr>
-      <th><strong>Clearance Required:</strong></th><td><%= @internship.intern_clearance_description %></td>
-    </tr>
-  <% end %>
-  <tr>
-    <th>Intern Mentor:</th>
-    <td><%= @internship.mentor_name %><br><%= @internship.mentor_email %><br><%= @internship.mentor_phone %><br></td>
-  </tr>
-</table>
-
-
-<h1>User view:</h1>
-<h2>Internship Opportunity at <%= @internship.company_name %></h2>
-<form method="post" action=<%= @route %>>
-  <!-- Remove hidden field of student id when login implemented -->
-  <input type="hidden" name="student_id" id="student_id" value="1">
-
+<% if admin? %>
+  <h2>Internship Opportunity at <%= @internship.company_name %></h2>
   <table class="table table-rating">
     <tr>
       <th>Company Info:</th>
       <td><%= @internship.company_website %><br><%= @internship.company_address %><br><br><%= @internship.company_description %></td>
-      <td>
-        <select name="company_rating" required>
-          <% @responses.each() do |response| %>
-            <option value="<%= response[:value] %>"><%= response[:label] %></option>
-          <% end %>
-        </select>
-      </td>
+    </tr>
+    <tr>
+      <th>Contact:</th>
+      <td><%= @internship.contact_name %><br><%= @internship.contact_phone %><br><%= @internship.contact_email %></td>
     </tr>
     <tr>
       <th>Internship Descripton:</th><td><%= @internship.intern_work %></td>
-      <td>
-        <select name="project_rating" required>
-          <% @responses.each() do |response| %>
-            <option value="<%= response[:value] %>"><%= response[:label] %></option>
-          <% end %>
-        </select>
-      </td>
     </tr>
     <tr>
       <th>Ideal Intern:</th><td><%= @internship.intern_ideal %></td>
-      <td>
-        <select name="personality_rating" required>
-          <% @responses.each() do |response| %>
-            <option value="<%= response[:value] %>"><%= response[:label] %></option>
-          <% end %>
-        </select>
-      </td>
     </tr>
     <% if @internship.intern_clearance == true %>
       <tr>
         <th><strong>Clearance Required:</strong></th><td><%= @internship.intern_clearance_description %></td>
       </tr>
     <% end %>
+    <tr>
+      <th>Intern Mentor:</th>
+      <td><%= @internship.mentor_name %><br><%= @internship.mentor_email %><br><%= @internship.mentor_phone %><br></td>
+    </tr>
   </table>
-  <button action="submit" class="btn btn-success"><%= @editing ? "Revise my views" : "Submit my views!" %></button>
-</form>
+
+<% else %>
+  <h2>Internship Opportunity at <%= @internship.company_name %></h2>
+  <form method="post" action=<%= @route %>>
+    <table class="table table-rating">
+      <tr>
+        <th>Contact:</th>
+        <td><%= @internship.contact_name %><br></td>
+      </tr>
+      <tr>
+        <th>Intern Mentor:</th>
+        <td><%= @internship.mentor_name %></td>
+      </tr>
+      <tr>
+        <th>Company Info:</th>
+        <td><%= @internship.company_website %><br><%= @internship.company_address %><br><br><%= @internship.company_description %></td>
+        <td>
+          <select name="company_rating" required>
+            <% @responses.each() do |response| %>
+              <option value="<%= response[:value] %>"><%= response[:label] %></option>
+            <% end %>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>Internship Descripton:</th><td><%= @internship.intern_work %></td>
+        <td>
+          <select name="project_rating" required>
+            <% @responses.each() do |response| %>
+              <option value="<%= response[:value] %>"><%= response[:label] %></option>
+            <% end %>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>Ideal Intern:</th><td><%= @internship.intern_ideal %></td>
+        <td>
+          <select name="personality_rating" required>
+            <% @responses.each() do |response| %>
+              <option value="<%= response[:value] %>"><%= response[:label] %></option>
+            <% end %>
+          </select>
+        </td>
+      </tr>
+      <% if @internship.intern_clearance == true %>
+        <tr>
+          <th><strong>Clearance Required:</strong></th><td><%= @internship.intern_clearance_description %></td>
+        </tr>
+      <% end %>
+    </table>
+    <button action="submit" class="btn btn-success">Submit my views!</button>
+  </form>
+<% end %>
