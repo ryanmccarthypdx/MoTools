@@ -38,7 +38,12 @@ get '/internships' do
     @unrated_internships = Internship.all
   elsif logged_in?
     @rated_internships = current_user.sorted_internships
+
+    @top_ten = current_user.top_ten
+    @eleven_plus = @rated_internships - @top_ten
+
     @unrated_internships = Internship.all - @rated_internships
+
   else
     @unrated_internships = Internship.all
   end
