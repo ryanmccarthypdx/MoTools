@@ -1,21 +1,27 @@
-<h2>Unrated Internships</h2>
+<% if @unrated_internships.any? %>
+  <h2>Rate an internship</h2>
   <%= erb :unrated_internships, layout: false %>
-<h2>Rated Internships</h2>
+<% else %>
+  <h2>You have rated all internships!</h2>
+<% end %>
 
-
-<table class="table table-internships">
-  <tr class="table-header">
-    <th>Company Name</th><th>Company Rating</th><th>Project Rating</th><th>Personality Fit Rating</th><th>Total Rating</th>
-  </tr>
-
-  <% @rated_internships.each do |internship| %>
-    <tr class="table-row">
-      <% rating = Rating.find_by(internship_id: internship.id, student_id: current_user.id) %>
-        <th><a href="/internships/<%= internship.id %>"><%= internship.company_name %></a></th>
-        <td><%= rating.company_rating %></td>
-        <td><%= rating.project_rating %></td>
-        <td><%= rating.personality_rating %></td>
-        <td><%= rating.total_rating %></td>
-      <% end %>
+<% if @rated_internships.any? %>
+  <p>Internships are ordered by rating from highest to lowest.</p>
+  <p>Click on an internship to edit its rating to break ties before submit.</p>
+  <table class="table table-internships">
+    <tr class="table-header">
+      <th>Company Name</th><th>Company Rating</th><th>Project Rating</th><th>Personality Fit Rating</th><th>Total Rating</th>
     </tr>
-</table>
+
+    <% @rated_internships.each do |internship| %>
+      <tr class="table-row">
+        <% rating = Rating.find_by(internship_id: internship.id, student_id: current_user.id) %>
+          <th><a href="/internships/<%= internship.id %>"><%= internship.company_name %></a></th>
+          <td><%= rating.company_rating %></td>
+          <td><%= rating.project_rating %></td>
+          <td><%= rating.personality_rating %></td>
+          <td><%= rating.total_rating %></td>
+        <% end %>
+      </tr>
+  </table>
+<% end %>

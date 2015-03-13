@@ -4,6 +4,14 @@
 
   <table class="table table-rating">
     <tr>
+      <th>Contact:</th>
+      <td><%= @internship.contact_name %><br></td>
+    </tr>
+    <tr>
+      <th>Intern Mentor:</th>
+      <td><%= @internship.mentor_name %></td>
+    </tr>
+    <tr>
       <th>Company Info:</th>
       <td><%= @internship.company_website %><br><%= @internship.company_address %><br><br><%= @internship.company_description %></td>
       <td>
