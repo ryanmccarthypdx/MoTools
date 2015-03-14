@@ -51,6 +51,7 @@ get '/internships' do
 end
 
 get '/internships/new' do
+  redirect '/' unless admin?
   erb :new_internship
 end
 
