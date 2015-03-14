@@ -1,6 +1,6 @@
 class Internship < ActiveRecord::Base
   has_many :ratings
-  has_many :users, :through => :ratings
+  has_many :students, :through => :ratings
   attr_accessor :student
 
   def self.import_csv (csv_file_data)
