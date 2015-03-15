@@ -2,7 +2,7 @@ require('bundler/setup')
 require('csv')
 require('open-uri')
 Bundler.require(:default)
-Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
+Dir[File.dirname(__FILE__) + '/lib/*.rb'].sort.each { |file| require file }
 
 enable :sessions
 
