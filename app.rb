@@ -42,7 +42,8 @@ get '/internships' do
     @top_ten = current_user.top_ten
     @eleven_plus = @rated_internships - @top_ten
 
-    @unrated_internships = Internship.all - @rated_internships
+    ordered_unrated_internships = (Internship.all - @rated_internships)
+    @unrated_internships = ordered_unrated_internships.sample(ordered_unrated_internships.length)
 
   else
     @unrated_internships = Internship.all
