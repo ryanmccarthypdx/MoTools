@@ -180,3 +180,19 @@ get '/download/:filename' do |filename|
   redirect '/' unless admin?
   send_file "./public/#{filename}", :filename => filename, :type => 'Application/octet-stream'
 end
+
+get '/update_password' do 
+  erb :update_password
+end
+
+post '/update_password' do 
+  if User.authenticate(current_user.name, params[:old_password]) && (params[:new_password] == params[:password_confirmation])
+    current_user.update(:password => params.fetch('new_password'))
+    redirect '/'
+  else
+    redirect '/update_password'
+  end
+  
+end
+
+
